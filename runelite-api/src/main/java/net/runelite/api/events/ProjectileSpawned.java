@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, 7ate9 <https://github.com/se7enAte9>
+ * Copyright (c) 2019, https://openosrs.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,34 +23,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.config;
+package net.runelite.api.events;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import net.runelite.api.Projectile;
+import lombok.Data;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface ConfigItem
+/**
+ * An event called whenever a {@link Projectile} has spawned.
+ */
+@Data
+public class ProjectileSpawned implements Event
 {
-	int position() default -1;
-
-	String keyName();
-
-	String name();
-
-	String description();
-
-	boolean hidden() default false;
-
-	String warning() default "";
-
-	boolean secret() default false;
-
-	String unhide() default "";
-
-	String hide() default "";
-
-	boolean parse() default false;
+    /**
+     * The spawned projectile.
+     */
+    private Projectile projectile;
 }
